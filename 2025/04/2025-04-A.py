@@ -1,6 +1,6 @@
 import sys
 
-if lan(sys.argv) < 2:
+if len(sys.argv) < 2:
   print("Usage python ",sys.argv[0], "<input file>")
   sys.exit(1)
 
