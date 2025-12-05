@@ -1,10 +1,13 @@
-#import re
+import sys
 
-with open("input_test.txt", "r") as inputfile:
-  inputdata = inputfile.read()
+if len(sys.argv) < 2:
+    print("Usage: python script.py <inputfile>")
+    sys.exit(1)
 
-MIN = 0
-MAX = 99
+filename = sys.argv[1]
+
+with open(filename, "r") as f:
+    inputdata = f.read()
 
 pos = 50
 matches = 0
@@ -12,17 +15,11 @@ for line in inputdata.split("\n"):
   if len(line) > 1:
     dir = line[0]
     num = int(line[1:])
-    print(pos, " || ", line, "  || Dir: ", dir, " Num:", num)
+    matches += num // 100
     if dir == 'L':
-      pos = pos - num
-      if pos < MIN:
-        pos = MAX - abs(pos)
-    elif dir == 'R':
-      pos = pos + num
-      if pos > MAX:
-        pos = MIN + pos - MAX
+      pos = (pos - num) % 100
     else:
-      print("Dir neither 'L' or 'R': ", dir)
+      pos = (pos + num) % 100
     if pos == 0:
       matches += 1
 
