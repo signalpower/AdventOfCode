@@ -1,5 +1,4 @@
 import sys
-#import heapq
 
 if len(sys.argv) < 2:
   print("Usage python ",sys.argv[0], "<input file>")
@@ -11,9 +10,6 @@ try:
 except FileNotFoundError:
   print("Error: The file was not found.")
   sys.exit(1)
-
-#sizes = []
-#  size = []
 
 points = [tuple(map(int, line.split(','))) for line in inputdata.splitlines() if line.strip()]
 np = len(points)
